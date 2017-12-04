@@ -1,5 +1,6 @@
 load 'subjects.rb'
 
+# Tabla de transiciones usada en la maquina de estados.
 class TransitionTable
   class TransitionError < RuntimeError
     def initialize(state, input)
@@ -11,6 +12,7 @@ class TransitionTable
     @transitions = transitions
   end
 
+  # Recive un estado y un input y transiciona al siguiente estado devolviendo la accion a ejecutar.
   def call(state, input)
     @transitions.fetch([state, input])
   rescue KeyError
@@ -18,6 +20,8 @@ class TransitionTable
   end
 end
 
+# Maquina de estados utilizada para analizar la informacion extraida de SGA
+# y crear los objetos necesarios.
 class StateMachine
   def initialize(transition_function, initial_state)
     @transition_function = transition_function
@@ -26,12 +30,15 @@ class StateMachine
 
   attr_reader :state
 
+  # Recive un input y realiza una transicion en la maquina de estados.
   def send_input(input)
     @state, output = @transition_function.call(@state, input)
     output
   end
 end
 
+# Haciendo uso de la maquina de estados, realiza acciones segun la transicion ocurrida.
+# Recive un objeto Subject y lo completa con toda la informacion necesaria.
 class DataExtractor
   STATE_TRANSITIONS = TransitionTable.new(
     # State, Input          Next state, Output
