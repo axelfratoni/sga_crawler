@@ -41,13 +41,13 @@ end
 # Recive un objeto Subject y lo completa con toda la informacion necesaria.
 class DataExtractor
   STATE_TRANSITIONS = TransitionTable.new(
-    # State, Input          Next state, Output
-	[:q0, :comision] 	=>	[:q1, :create_plan],
-	[:q1, :dia] 		=> 	[:q2, :create_class],
-	[:q2, :hora] 		=> 	[:q3, :append_start_hour],
-	[:q3, :hora]		=>	[:q4, :append_finish_hour],
-	[:q4, :dia]			=>	[:q2, :create_class],
-	[:q4, :comision]	=>	[:q1, :create_plan]
+    # State, Input        Next state, Output
+    %i[q0 comision] => %i[q1 create_plan],
+    %i[q1 dia] => %i[q2 create_class],
+    %i[q2 hora] => %i[q3 append_start_hour],
+    %i[q3 hora] => %i[q4 append_finish_hour],
+    %i[q4 dia] => %i[q2 create_class],
+    %i[q4 comision] => %i[q1 create_plan]
   )
   attr_reader :subject
 
@@ -62,20 +62,20 @@ class DataExtractor
   end
 
   def create_plan(name)
-	@actual_plan = Plan.new(name)
-	@subject.add_plan(@actual_plan)
+    @actual_plan = Plan.new(name)
+    @subject.add_plan(@actual_plan)
   end
 
   def create_class(day)
-	@actual_class = Class.new(day)
+    @actual_class = Class.new(day)
   end
 
   def append_start_hour(hour)
-  	@actual_class.start = hour
+    @actual_class.start = hour
   end
 
   def append_finish_hour(hour)
-  	@actual_class.finish = hour
-  	@actual_plan.add_class(@actual_class)
+    @actual_class.finish = hour
+    @actual_plan.add_class(@actual_class)
   end
 end
