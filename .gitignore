@@ -1,3 +1,7 @@
 # Ignore data files
 
 data*
+
+# Ignore keys
+
+sga_crawler_app/src/config/keys.js
