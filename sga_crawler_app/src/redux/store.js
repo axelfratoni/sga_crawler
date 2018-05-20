@@ -1,18 +1,16 @@
-import { createStore, applyMiddleware, compose, combineReducers } from "redux";
-import thunk from "redux-thunk";
-import { routerReducer as router, routerMiddleware } from "react-router-redux";
-import { fetchMiddleware } from "redux-recompose";
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import { routerReducer as router } from 'react-router-redux';
+import { fetchMiddleware } from 'redux-recompose';
 
-import subjects from "./subjects/reducer";
-
-export const history = createHistory();
+import subjects from './subjects/reducer';
 
 const reducers = combineReducers({
-  router,
-  subjects
+    router,
+    subjects
 });
 
-const middlewares = [fetchMiddleware, thunk, routerMiddleware(history)];
+const middlewares = [fetchMiddleware, thunk];
 const enhancers = [applyMiddleware(...middlewares)];
 
 // eslint-disable-next-line no-underscore-dangle

@@ -1,16 +1,10 @@
-import { createReducer, completeReducer, completeState } from 'redux-recompose';
-import Immutable from 'seamless-immutable';
+import { FETCH_SUBJECTS } from './actions';
 
-import { actions } from './actions';
-
-const stateDescription = {
-  subjects: null
+export default (state = {}, action) => {
+    switch (action.type) {
+    case FETCH_SUBJECTS:
+        return action.payload;
+    default:
+        return state;
+    }
 };
-
-const initialState = completeState(stateDescription);
-
-const reducerDescription = {
-  primaryActions: [actions.GET_ALL_SUBJECTS]
-};
-
-export default createReducer(Immutable(initialState), completeReducer(reducerDescription));

@@ -1,15 +1,20 @@
-import { completeTypes, createTypes } from 'redux-recompose';
+import { subjectsRef } from '../../config/firebase';
 
-import UserService from '../../Services/UserService';
+export const FETCH_SUBJECTS = 'FETCH_SUBJECTS';
 
-export const actions = createTypes(completeTypes(['GET_ALL_SUBJECTS']), '@@SUBJECTS');
+// export const addToDo = newToDo => async dispatch => {
+//   todosRef.push().set(newToDo);
+// };
 
-const ActionCreators = {
-  subjects: () => ({
-    type: actions.GET_ALL_SUBJECTS,
-    target: 'subjects',
-    service: UserService.books
-  })
+// export const completeToDo = completeToDoId => async dispatch => {
+//   todosRef.child(completeToDoId).remove();
+// };
+
+export const fetchSubjects = () => async dispatch => {
+    subjectsRef.on('value', snapshot => {
+        dispatch({
+            type: FETCH_SUBJECTS,
+            payload: snapshot.val()
+        });
+    });
 };
-
-export default ActionCreators;
