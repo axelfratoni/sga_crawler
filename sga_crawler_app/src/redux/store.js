@@ -3,11 +3,8 @@ import thunk from 'redux-thunk';
 import { routerReducer as router } from 'react-router-redux';
 import { fetchMiddleware } from 'redux-recompose';
 
-import subjects from './subjects/reducer';
-
 const reducers = combineReducers({
-    router,
-    subjects
+  router
 });
 
 const middlewares = [fetchMiddleware, thunk];

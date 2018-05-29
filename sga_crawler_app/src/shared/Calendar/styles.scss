@@ -1,0 +1,68 @@
+.week {
+  display:grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-auto-flow: dense;
+  grid-gap: 2px 10px;
+
+  &.week-appointments {
+    grid-template-rows: repeat(16, 1fr);
+  }
+
+  .week-day {
+    text-align: left;
+  }
+
+  .hour {
+    text-align: center;
+    grid-column-start: 1;
+  }
+
+  .appointment {
+    border: 1px solid;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+[data-hour="8"] { grid-row-start: 1; }
+[data-hour="9"] { grid-row-start: 2; }
+[data-hour="10"] { grid-row-start: 3; }
+[data-hour="11"] { grid-row-start: 4; }
+[data-hour="12"] { grid-row-start: 5; }
+[data-hour="13"] { grid-row-start: 6; }
+[data-hour="14"] { grid-row-start: 7; }
+[data-hour="15"] { grid-row-start: 8; }
+[data-hour="16"] { grid-row-start: 9; }
+[data-hour="17"] { grid-row-start: 10; }
+[data-hour="18"] { grid-row-start: 11; }
+[data-hour="19"] { grid-row-start: 12; }
+[data-hour="20"] { grid-row-start: 13; }
+[data-hour="21"] { grid-row-start: 14; }
+[data-hour="22"] { grid-row-start: 15; }
+[data-hour="23"] { grid-row-start: 16; }
+
+[data-duration="1"] { grid-row-end: span 1; }
+[data-duration="2"] { grid-row-end: span 2; }
+[data-duration="3"] { grid-row-end: span 3; }
+[data-duration="4"] { grid-row-end: span 4; }
+[data-duration="5"] { grid-row-end: span 5; }
+[data-duration="6"] { grid-row-end: span 6; }
+[data-duration="7"] { grid-row-end: span 7; }
+[data-duration="8"] { grid-row-end: span 8; }
+[data-duration="9"] { grid-row-end: span 9; }
+
+[data-day="mon"] { grid-column-start: 2 }
+[data-day="tue"] { grid-column-start: 3 }
+[data-day="wed"] { grid-column-start: 4 }
+[data-day="thu"] { grid-column-start: 5 }
+[data-day="fri"] { grid-column-start: 6 }
+[data-day="sat"] { grid-column-start: 7 }
+[data-day="sun"] { grid-column-start: 8 }
+
+[data-color="red"] { background-color: lightcoral }
+[data-color="blue"] { background-color: lightblue }
+[data-color="yellow"] { background-color: lightcyan }
+[data-color="green"] { background-color: lightgreen }
+[data-color="orange"] { background-color: lightsalmon }
+[data-color="purple"] { background-color: plum }
+[data-color="gray"] { background-color: silver }

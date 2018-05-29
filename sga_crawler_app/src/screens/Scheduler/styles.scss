@@ -1,0 +1,12 @@
+.scheduler-container {
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+
+    .option {
+      background-color: white;
+      border: 1px solid;
+    }
+  }
+}
