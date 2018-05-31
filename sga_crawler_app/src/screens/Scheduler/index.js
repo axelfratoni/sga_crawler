@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { fetchSubjects } from '../../config/firebase';
+import { fetchAllSubjectNamesWithCode } from '../../config/firebase';
 import Calendar from '../../shared/Calendar';
 
 import './styles.css';
@@ -12,7 +12,7 @@ class Scheduler extends Component {
     const handleFetchSubjects = subjects => {
       this.setState({ subjects });
     };
-    fetchSubjects(handleFetchSubjects);
+    fetchAllSubjectNamesWithCode(handleFetchSubjects);
   };
 
   handleToggleSubj = subj => () => {
