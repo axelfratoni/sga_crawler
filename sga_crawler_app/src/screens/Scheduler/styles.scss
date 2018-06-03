@@ -1,12 +1,23 @@
 .scheduler-container {
 
+  .option-filter {
+    border: solid 1px;
+    border-radius: 0;
+    font-style: italic;
+    height: 30px;
+    padding-left: 10px;
+    width: 100%;
+  }
+
   .options-container {
-    display: flex;
-    flex-direction: column;
+    height: 200px;
+    overflow: scroll;
 
     .option {
       background-color: white;
       border: 1px solid;
+      height: 40px;
+      width: 100%;
     }
   }
 }

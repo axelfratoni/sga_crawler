@@ -53,7 +53,7 @@ class AppointmentsExtractor extends Component {
               data-duration={this.getDuration(cla.start, cla.finish)}
               data-color={color}
             >
-              {fullSubject.subj_name}
+              <span className="text-container">{fullSubject.subj_name}</span>
             </div>
           ))
         ) : (

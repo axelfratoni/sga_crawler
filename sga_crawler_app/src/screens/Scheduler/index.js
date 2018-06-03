@@ -33,13 +33,24 @@ class Scheduler extends Component {
       <div className="scheduler-container">
         <h1>SGA Crawler</h1>
         <Calendar subjects={this.state.toSchedule} />
+        <input className="option-filter" onChange={this.handleFilter} placeholder="Busca una materia" />
         <div className="options-container">
-          <input className="option-filter" onChange={this.handleFilter} />
           {this.state.subjects
-            .filter(sub => sub.subj_name.toUpperCase().includes(this.state.filter.toUpperCase()))
+            .filter(sub =>
+              sub.subj_name
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toUpperCase()
+                .includes(
+                  this.state.filter
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .toUpperCase()
+                )
+            )
             .map(sub => (
               <button className="option" key={sub.subj_code} onClick={this.handleToggleSubj(sub)}>
-                <p>{sub.subj_name}</p>
+                {sub.subj_name}
               </button>
             ))}
         </div>
