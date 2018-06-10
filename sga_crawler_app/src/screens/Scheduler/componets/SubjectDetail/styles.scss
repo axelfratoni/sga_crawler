@@ -1,0 +1,33 @@
+.subject-detail {
+  overflow: scroll;
+
+  .detail {
+    width: 80%;
+
+    .subject-title {
+      font-size: 16px;
+    }
+
+    .subject-plans {
+
+      .plan-container {
+        display: flex;
+        margin-bottom: 15px;
+
+        .plan-title {
+          font-weight: bold;
+          width: 40px;
+        }
+
+        .plan-class {
+          display: flex;
+          flex-direction: column;
+
+          .class {
+
+          }
+        }
+      }
+    }
+  }
+}

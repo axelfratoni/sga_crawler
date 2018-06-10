@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { fetchAllSubjectNamesWithCode } from '../../config/firebase';
 import Calendar from '../../shared/Calendar';
 
+import SubjectDetail from './componets/SubjectDetail';
 import './styles.css';
 
 class Scheduler extends Component {
-  state = { subjects: [], toSchedule: [], filter: '' };
+  state = { subjects: [], toSchedule: [], filter: '', showingInfo: null };
 
   componentDidMount = () => {
     const handleFetchSubjects = subjects => {
@@ -44,18 +45,33 @@ class Scheduler extends Component {
     this.setState({ filter: e.target.value });
   };
 
+  handleShowInfo = subject => () => {
+    this.setState({ showingInfo: subject });
+  };
+
+  isSubjectSelected = subject => this.state.toSchedule.find(sub => subject.subj_code === sub.subj_code);
+
   render() {
     return (
       <div className="scheduler-container">
         <h1>SGA Crawler</h1>
-        <Calendar subjects={this.state.toSchedule} />
+        <Calendar subjects={this.state.toSchedule} handleShowInfo={this.handleShowInfo} />
         <input className="option-filter" onChange={this.handleFilter} placeholder="Buscá una materia" />
-        <div className="options-container">
-          {this.getFilteredSubjects().map(sub => (
-            <button className="option" key={sub.subj_code} onClick={this.handleToggleSubj(sub)}>
-              {sub.subj_name}
-            </button>
-          ))}
+        <div className="subjects-info-container">
+          <div className="options-container">
+            {this.getFilteredSubjects().map(sub => (
+              <button
+                className={`option ${this.isSubjectSelected(sub) ? 'selected' : ''}`}
+                key={sub.subj_code}
+                onClick={this.handleToggleSubj(sub)}
+              >
+                {sub.subj_name}
+              </button>
+            ))}
+          </div>
+          <div className="subject-detail">
+            <SubjectDetail subject={this.state.showingInfo} />
+          </div>
         </div>
       </div>
     );

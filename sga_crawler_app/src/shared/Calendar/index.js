@@ -8,7 +8,7 @@ const colorArray = ['red', 'blue', 'yellow', 'green', 'orange', 'purple', 'gray'
 
 const getColor = id => colorArray[id % colorArray.length];
 
-function Calendar({ subjects }) {
+function Calendar({ subjects, handleShowInfo }) {
   return (
     <Fragment>
       <div className="week">
@@ -26,7 +26,15 @@ function Calendar({ subjects }) {
           </div>
         ))}
         {subjects.map(
-          (sub, i) => sub && <AppointmentsExtractor key={sub.subj_code} subject={sub} color={getColor(i)} />
+          (sub, i) =>
+            sub && (
+              <AppointmentsExtractor
+                key={sub.subj_code}
+                subject={sub}
+                color={getColor(i)}
+                handleShowInfo={handleShowInfo}
+              />
+            )
         )}
       </div>
     </Fragment>
@@ -34,6 +42,7 @@ function Calendar({ subjects }) {
 }
 
 Calendar.propTypes = {
+  handleShowInfo: PropTypes.func,
   subjects: PropTypes.arrayOf(
     PropTypes.shape({
       subj_name: PropTypes.string,

@@ -39,13 +39,14 @@ class AppointmentsExtractor extends Component {
   getDuration = (start, finish) => parseInt(finish.split(':')[0], 10) - parseInt(start.split(':')[0], 10);
 
   render() {
-    const { color } = this.props;
+    const { color, handleShowInfo } = this.props;
     const { fullSubject } = this.state;
     return (
       <Fragment>
         {fullSubject && fullSubject.plans ? (
           fullSubject.plans[0].classes.map(cla => (
-            <div
+            <button
+              onClick={handleShowInfo(fullSubject)}
               key={cla.day + cla.start}
               className="appointment"
               data-hour={this.getStartHour(cla.start)}
@@ -54,7 +55,7 @@ class AppointmentsExtractor extends Component {
               data-color={color}
             >
               <span className="text-container">{fullSubject.subj_name}</span>
-            </div>
+            </button>
           ))
         ) : (
           <div />
@@ -64,6 +65,7 @@ class AppointmentsExtractor extends Component {
   }
 }
 AppointmentsExtractor.propTypes = {
+  handleShowInfo: PropTypes.func,
   color: PropTypes.string,
   subject: PropTypes.shape({
     subj_name: PropTypes.string,
