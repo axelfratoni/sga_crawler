@@ -36,7 +36,7 @@ class Scheduler extends Component {
     const size = this.state.toSchedule.length;
     const aux = this.state.toSchedule.filter(s => s.subj_code !== subj.subj_code);
     if (aux.length === size) {
-      aux.push(subj);
+      aux.push({ ...subj, plan: 0 });
     }
     this.setState({ toSchedule: aux });
   };
@@ -47,6 +47,12 @@ class Scheduler extends Component {
 
   handleShowInfo = subject => () => {
     this.setState({ showingInfo: subject });
+  };
+
+  handleSelectPlan = subj => () => {
+    const aux = this.state.toSchedule.filter(s => s.subj_code !== subj.subj_code);
+    aux.push({ ...subj, plan: subj.plan });
+    this.setState({ toSchedule: aux });
   };
 
   isSubjectSelected = subject => this.state.toSchedule.find(sub => subject.subj_code === sub.subj_code);
@@ -70,7 +76,7 @@ class Scheduler extends Component {
             ))}
           </div>
           <div className="subject-detail">
-            <SubjectDetail subject={this.state.showingInfo} />
+            <SubjectDetail subject={this.state.showingInfo} handleSelectPlan={this.handleSelectPlan} />
           </div>
         </div>
       </div>

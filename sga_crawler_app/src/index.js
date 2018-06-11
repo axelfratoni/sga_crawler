@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import './index.css';
+import './equalizer.css';
 import store from './redux/store';
 
 ReactDOM.render(

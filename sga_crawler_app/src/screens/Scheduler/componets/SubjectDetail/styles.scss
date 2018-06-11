@@ -1,11 +1,16 @@
+@import '../../../../constants/colors.scss';
+
 .subject-detail {
   overflow: scroll;
 
   .detail {
+    padding-top: 20px;
     width: 80%;
 
     .subject-title {
       font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
     .subject-plans {
@@ -15,16 +20,18 @@
         margin-bottom: 15px;
 
         .plan-title {
+          text-align: left;
           font-weight: bold;
           width: 40px;
         }
 
         .plan-class {
+          align-items: flex-start;
           display: flex;
           flex-direction: column;
 
           .class {
-
+            margin-bottom: 5px;
           }
         }
       }
